@@ -1,95 +1,55 @@
-<!doctype html>
-<html lang="{{ app()->getLocale() }}">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.master')
 
-        <title>Laravel</title>
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Raleway', sans-serif;
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
+@section('app')
+    <div class="m-container container">
+        <div class="w-header flex-center position-ref full-height">
             @if (Route::has('login'))
-                <div class="top-right links">
+                <div class="w-top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
+                        <a href="{{ url('/') }}">Home</a>
                     @else
-                        <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
+                        <a href="{{ route('login') }}" style="color: transparent">Login</a>
                     @endauth
                 </div>
             @endif
 
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
+            <div class="w-content">
+                <div class="w-title">
+                    iFiring
                 </div>
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
+                <p>
+                    努力做一个终身学习和持续思考的人
+                </p>
+
+                <ul class="w-links">
+                    <li class="w-links-li col-xs-1 col-sm-2 col-md-2 col-lg-1">
+                        <p class="w-links-p">
+                            <a href="/blog/" target="_blank"><img class="w-icons" src="icons/notes.svg" alt="notes"/></a>
+                        </p>
+                    </li>
+                    <li class="w-links-li col-xs-1 col-sm-2 col-md-2 col-lg-1">
+                        <p class="w-links-p">
+                            <a href="https://github.com/iFiring" target="_blank"><img class="w-icons" src="icons/github.svg" alt="github"/></a>
+                        </p>
+                    </li>
+                    <li class="w-links-li col-xs-1 col-sm-2 col-md-2 col-lg-1">
+                        <p class="w-links-p">
+                            <a href="mailto:wchuan@drips.cn" title="wchuan@drips.cn"><img class="w-icons" src="icons/email.svg" alt="email"/></a>
+                        </p>
+                    </li>
+                    <li class="w-links-li col-xs-1 col-sm-2 col-md-2 col-lg-1">
+                        <p class="w-links-p">
+                            <a href="https://twitter.com/wcdripscn" target="_blank" title=""><img class="w-icons" src="icons/twitter.svg" alt="twitter"/></a>
+                        </p>
+                    </li>
+                    <li class="w-links-li col-xs-1 col-sm-2 col-md-2 col-lg-1">
+                        <p class="w-links-p">
+                            <a href="/blog/#/articles/about" target="_blank"><img class="w-icons" src="icons/user.svg" alt="user"/></a>
+                        </p>
+                    </li>
+                </ul>
             </div>
         </div>
-    </body>
-</html>
+    </div>
+@endsection
