@@ -75,11 +75,16 @@
           if (valid) {
             const name = this.dynamicValidateForm.name;
             const id = this.currentId;
-            const doRequest = id ? fly.patch : fly.post;
+            const type = id ? 'patch' : 'post';
             const url = id ? `/api/sorts/${id}` : `/api/sorts`;
-            doRequest(url, {
-              name: name
-            }).then(res => {
+            fly.request(
+              url,
+              {
+                name: name
+              },
+              {
+                method: type
+              }).then(res => {
               console.log(res);
             }).catch(err => console.log(err)).finally(() => {
               this.dialogVisible = false;
