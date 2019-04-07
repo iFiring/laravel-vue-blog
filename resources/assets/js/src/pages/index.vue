@@ -87,6 +87,18 @@
         .index-header-menu-item {
           border-bottom: solid 1px #e6e6e6 !important;
         }
+        @media (max-width: 850px) {
+          .index-header-menu-item {
+            padding: 0 5px;
+          }
+        }
+
+        @media (max-width: 700px) {
+          .index-header-menu-item {
+            font-size: 12px;
+            vertical-align: top;
+          }
+        }
 
         .is-active {
           border-bottom: 2px solid #409EFF !important;
@@ -105,6 +117,19 @@
         transition: border-color .3s,background-color .3s,color .3s;
         box-sizing: border-box;
         white-space: nowrap;
+      }
+
+      @media (max-width: 850px) {
+        .index-header-about {
+          padding: 0 5px;
+        }
+      }
+
+      @media (max-width: 700px) {
+        .index-header-about {
+          font-size: 12px;
+          vertical-align: top;
+        }
       }
     }
     .index-main {
