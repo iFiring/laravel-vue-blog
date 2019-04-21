@@ -107,28 +107,32 @@
           margin: 0 16px 0 6px;
           img {
             height: 22px;
-            margin-right: 6px;
+            margin-right: 4px;
           }
         }
       }
 
       @media (max-width: 700px) {
         .index-title {
-          font-size: 16px;
           margin: 0 8px 0 4px;
           img {
             height: 18px;
-            margin-right: 4px;
+          }
+          span {
+            display: none;
           }
         }
       }
 
       .index-header-menu {
         flex: 1 1 auto;
+        display: flex;
+        overflow-x: scroll;
+        overflow-y: hidden;
 
         .index-header-menu-item {
           font-size: 16px;
-          border-bottom: solid 1px #e6e6e6 !important;
+          border-bottom: unset;
         }
         @media (max-width: 850px) {
           .index-header-menu-item {
@@ -161,6 +165,7 @@
         transition: border-color .3s,background-color .3s,color .3s;
         box-sizing: border-box;
         white-space: nowrap;
+        outline: unset;
       }
 
       @media (max-width: 850px) {
