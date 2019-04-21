@@ -27,7 +27,7 @@ class BlogController extends Controller
 
     public function show($id)
     {
-        $article = Article::where('is_draft', 0)->select('id', 'title', 'cover', 'sorts_id', 'description', 'created_at', 'content_html')->findOrFail($id);
+        $article = Article::where('is_draft', 0)->select('id', 'title', 'cover', 'sorts_id', 'description', 'created_at', 'content_raw')->findOrFail($id);
         return response()->json([
             'article' => $article
         ]);

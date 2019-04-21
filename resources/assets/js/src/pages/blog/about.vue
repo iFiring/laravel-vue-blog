@@ -46,6 +46,7 @@
 <style lang="scss" scoped>
   .about-container {
     .title {
+      font-size: 1.17em;
       text-align: left;
     }
     .desc {

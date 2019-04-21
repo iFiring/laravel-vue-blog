@@ -32,7 +32,7 @@ class ArticleController extends Controller
         })->select('id', 'title', 'cover', 'description', 'created_at', 'is_draft')->orderBy('created_at', 'desc')->paginate($request->page_size);
 
         foreach ($articles as $article) {
-          $article->content = str_limit(strip_tags($article->content_html), 30);
+          $article->content = str_limit(strip_tags($article->content_raw), 30);
           $article->created_at_date = $article->created_at->toDateString();
         }
 
@@ -45,7 +45,7 @@ class ArticleController extends Controller
      */
     public function show($id)
     {
-        $article = Article::select('id', 'title', 'cover', 'sorts_id', 'description', 'content_html', 'is_draft')->findOrFail($id);
+        $article = Article::select('id', 'title', 'cover', 'sorts_id', 'description', 'created_at', 'content_raw', 'is_draft')->findOrFail($id);
         $sorts = Sort::select('id', 'name')->orderBy('id')->get();
         return response()->json([
           'article' => $article,
@@ -64,8 +64,7 @@ class ArticleController extends Controller
       $article->title = $request->title;
       $article->cover = $request->cover;
       $article->description = $request->description;
-      // $article->content_raw = $request->cn_content;
-      $article->content_html = $request->cn_content;
+      $article->content_raw = $request->content_raw;
       $article->sorts_id = $request->sort;
       $article->is_draft = $request->is_draft;
       $article->save();
@@ -87,8 +86,7 @@ class ArticleController extends Controller
       $article->title = $request->title;
       $article->cover = $request->cover;
       $article->description = $request->description;
-      // $article->content_raw = $request->cn_content;
-      $article->content_html = $request->cn_content;
+      $article->content_raw = $request->content_raw;
       $article->sorts_id = $request->sort;
       $article->is_draft = $request->is_draft ? 1 : 0;
       $article->save();

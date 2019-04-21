@@ -3,7 +3,7 @@
     <div class="main-card" v-for="(article, index) in articles" :key="index">
       <div class="card-container">
         <div class="card-image-body" @click="handleShow(article.id)">
-          <img :src="article.cover ? `/storage/images/${article.cover}` : '/default_cover.jpg'" class="image">
+          <img :src="article.cover || '/default_cover.jpg'" class="image">
         </div>
         <div style="padding: 14px;">
           <span>{{ article.title }}</span>

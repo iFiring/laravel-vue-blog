@@ -23,8 +23,9 @@
           tag: null,
           sort: null,
           desc: '',
-          coverName: '',
-          cnContent: '',
+          coverUrl: '',
+          created_at: '',
+          content_raw: '',
           isPublished: true
         },
         sorts: []

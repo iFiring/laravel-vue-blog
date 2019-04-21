@@ -1,6 +1,10 @@
 <template>
   <el-container direction="vertical" class="index-container">
     <el-header class="index-header">
+      <a class="index-title">
+        <img src="../resource/flame.svg" alt="flame"/>
+        <span>iFiring</span>
+      </a>
       <el-menu :default-active="activeIndex" class="index-header-menu" mode="horizontal" @select="handleSelect">
         <el-menu-item class="index-header-menu-item" index="0">首页</el-menu-item>
         <el-menu-item class="index-header-menu-item" v-for="(sort, index) in sorts" :key="sort.id" :index="sort.id.toLocaleString()">{{ sort.name }}</el-menu-item>
@@ -80,22 +84,62 @@
     .index-header {
       display: flex;
       justify-content: space-between;
+      .index-title {
+        height: 100%;
+        float: left;
+        font-size: 26px;
+        font-weight: lighter;
+        display: inline-flex;
+        align-items: center;
+        margin: 0 24px 0 12px;
+        color: #333;
+        text-decoration: none;
+
+        img {
+          height: 28px;
+          margin-right: 8px;
+        }
+      }
+
+      @media (max-width: 850px) {
+        .index-title {
+          font-size: 24px;
+          margin: 0 16px 0 6px;
+          img {
+            height: 22px;
+            margin-right: 6px;
+          }
+        }
+      }
+
+      @media (max-width: 700px) {
+        .index-title {
+          font-size: 16px;
+          margin: 0 8px 0 4px;
+          img {
+            height: 18px;
+            margin-right: 4px;
+          }
+        }
+      }
 
       .index-header-menu {
         flex: 1 1 auto;
 
         .index-header-menu-item {
+          font-size: 16px;
           border-bottom: solid 1px #e6e6e6 !important;
         }
         @media (max-width: 850px) {
           .index-header-menu-item {
+            font-size: 16px;
             padding: 0 5px;
           }
         }
 
         @media (max-width: 700px) {
           .index-header-menu-item {
-            font-size: 12px;
+            font-size: 14px;
             vertical-align: top;
           }
         }
@@ -106,7 +150,7 @@
       }
 
       .index-header-about {
-        font-size: 14px;
+        font-size: 16px;
         height: 60px;
         line-height: 60px;
         padding: 0 20px;
@@ -121,13 +165,14 @@
 
       @media (max-width: 850px) {
         .index-header-about {
+          font-size: 16px;
           padding: 0 5px;
         }
       }
 
       @media (max-width: 700px) {
         .index-header-about {
-          font-size: 12px;
+          font-size: 14px;
           vertical-align: top;
         }
       }
