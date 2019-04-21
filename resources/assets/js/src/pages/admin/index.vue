@@ -47,7 +47,6 @@
     },
 
     created() {
-      console.log(this.$route);
       switch (this.$route.path) {
         case '/admin/articles':
           this.menuIndex = '1';

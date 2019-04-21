@@ -37,13 +37,13 @@
       fly.get(`/api/articles/${id}`).then(res => {
         const responseArticle = res.data.article;
         this.article = {
-          title: responseArticle.title,
+          title: responseArticle.title || '',
           // tag: null,
-          sort: responseArticle['sorts_id'],
-          desc: responseArticle.description,
+          sort: responseArticle['sorts_id'] || null,
+          desc: responseArticle.description || '',
           coverUrl: responseArticle.cover || '',
           created_at: responseArticle.created_at || '',
-          content_raw: responseArticle['content_raw'],
+          content_raw: responseArticle['content_raw'] || '',
           isPublished: responseArticle.is_draft ? false : true
         };
         this.sorts = res.data.sorts || [];
