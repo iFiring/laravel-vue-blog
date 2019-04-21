@@ -4,11 +4,12 @@
     <!--<p class="cover">{{ article.cover }}</p>-->
     <p class="desc">{{ article.description }}</p>
     <p class="created">{{ article.created_at }}</p>
-    <p v-html="article.content_html"></p>
+    <p class="content" v-html="compiledMarkdown"></p>
   </el-col>
 </template>
 
 <script>
+  import marked from 'marked';
   export default {
     name: "show",
 
@@ -19,7 +20,7 @@
           cover: '',
           description: '',
           created_at: '',
-          content_html: '',
+          content_raw: '',
           sort_id: null
         }
       }
@@ -27,6 +28,12 @@
 
     created() {
       this.initData();
+    },
+
+    computed: {
+      compiledMarkdown: function () {
+        return marked(this.article['content_raw'], { sanitize: true })
+      }
     },
 
     methods: {
@@ -42,7 +49,7 @@
   }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .show-container {
   .title {
     text-align: center;
@@ -51,6 +58,11 @@
   .created {
     margin-top: 32px;
     text-align: right;
+  }
+  .content {
+    img {
+      max-width: 100%;
+    }
   }
 }
 </style>

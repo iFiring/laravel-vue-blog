@@ -28,6 +28,7 @@
             prop="name"
             required
             label="分类名"
+            v-if="dialogVisible"
             :rules="{ required: true, message: '名字不能为空' }">
           <el-input v-model="dynamicValidateForm.name" autocomplete="off"/>
         </el-form-item>

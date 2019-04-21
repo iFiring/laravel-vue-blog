@@ -23,8 +23,9 @@
           tag: null,
           sort: null,
           desc: '',
-          coverName: '',
-          cnContent: '',
+          coverUrl: '',
+          created_at: '',
+          content_raw: '',
           isPublished: true
         },
         sorts: []
@@ -40,8 +41,9 @@
           // tag: null,
           sort: responseArticle['sorts_id'],
           desc: responseArticle.description,
-          coverName: responseArticle.cover || '',
-          cnContent: responseArticle['content_html'],
+          coverUrl: responseArticle.cover || '',
+          created_at: responseArticle.created_at || '',
+          content_raw: responseArticle['content_raw'],
           isPublished: responseArticle.is_draft ? false : true
         };
         this.sorts = res.data.sorts || [];

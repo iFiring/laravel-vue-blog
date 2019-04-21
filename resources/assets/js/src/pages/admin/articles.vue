@@ -1,7 +1,7 @@
 <template>
   <el-container class="articles-container" v-loading="loading" direction="vertical">
     <el-row class="row">
-      <el-button type="success" icon="el-icon-edit" @click="handleCreate()" round>
+      <el-button class="new-button" type="success" icon="el-icon-edit" @click="handleCreate()" round>
         新文章
       </el-button>
     </el-row>
@@ -23,8 +23,8 @@
                 placement="right"
                 width="640"
                 trigger="hover">
-              <img class="table-column-img-hover" :src="scope.row.cover ? `/storage/images/${scope.row.cover}` : '/default_cover.jpg'" alt="article cover" />
-              <img class="table-column-img" slot="reference" :src="scope.row.cover ? `/storage/images/${scope.row.cover}` : '/default_cover.jpg'"/>
+              <img class="table-column-img-hover" :src="scope.row.cover || '/default_cover.jpg'" alt="article cover" />
+              <img class="table-column-img" slot="reference" :src="scope.row.cover || '/default_cover.jpg'"/>
             </el-popover>
           </template>
         </el-table-column>
@@ -108,7 +108,7 @@
       },
 
       handlePreview(id) {
-        window.open(`/blog/#/articles/${id}`);
+        window.open(`/blog/#/articles/show/${id}`);
       },
 
       handleEdit(id) {
@@ -182,6 +182,11 @@
   .row {
     margin: 14px 0;
     justify-content: flex-end;
+    text-align: right;
+
+    .new-button{
+      margin: 0 10px;
+    }
 
     .table-column-img{
       width: 100px;
