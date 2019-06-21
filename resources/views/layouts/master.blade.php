@@ -17,22 +17,6 @@
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-  <style>
-    .show-title {
-      text-align: center;
-      font-size: 32px;
-      font-weight: 500;
-    }
-
-    .show-date {
-      text-align: right;
-    }
-
-    .show-content {
-      font-size: 18px;
-      word-break: break-word;
-    }
-  </style>
 </head>
 <body>
 

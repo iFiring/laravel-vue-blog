@@ -1,198 +1,93 @@
 <template>
-  <el-container direction="vertical" class="index-container">
-    <el-header class="index-header">
-      <a class="index-title">
-        <img src="../resource/flame.svg" alt="flame"/>
-        <span>iFiring</span>
-      </a>
-      <el-menu :default-active="activeIndex" class="index-header-menu" mode="horizontal" @select="handleSelect">
-        <el-menu-item class="index-header-menu-item" index="0">首页</el-menu-item>
-        <el-menu-item class="index-header-menu-item" v-for="(sort, index) in sorts" :key="sort.id" :index="sort.id.toLocaleString()">{{ sort.name }}</el-menu-item>
-        <el-menu-item style="display: none" index="-1">-1</el-menu-item>
-        <el-menu-item style="display: none" index="-2">-2</el-menu-item>
-      </el-menu>
-      <div class="index-header-about" @click="handleAbout" :style="activeIndex === '-1' ? 'border-bottom: 2px solid #409EFF' : ''">关于</div>
-    </el-header>
-    <el-main id="main" class="index-main">
-      <el-row :gutter="16" type="flex" justify="center" style="min-height: 100%">
-        <router-view :index="activeIndex" />
-      </el-row>
-    </el-main>
-    <el-footer class="index-footer" height="32px">Design & Code By iFiring</el-footer>
-  </el-container>
+  <div class="w-content">
+    <div class="w-title">
+      iFiring
+    </div>
+
+    <p>
+      努力做一个终身学习和持续思考的人
+    </p>
+
+    <ul class="w-links">
+      <li class="w-links-li col-xs-1 col-sm-2 col-md-2 col-lg-1">
+        <p class="w-links-p">
+          <a href="/blog/" target="_blank"><img class="w-icons" src="icons/notes.svg" alt="notes"/></a>
+        </p>
+      </li>
+      <li class="w-links-li col-xs-1 col-sm-2 col-md-2 col-lg-1">
+        <p class="w-links-p">
+          <a href="https://github.com/iFiring" target="_blank"><img class="w-icons" src="icons/github.svg" alt="github"/></a>
+        </p>
+      </li>
+      <li class="w-links-li col-xs-1 col-sm-2 col-md-2 col-lg-1">
+        <p class="w-links-p">
+          <a href="mailto:wchuan@drips.cn" title="wchuan@drips.cn"><img class="w-icons" src="icons/email.svg" alt="email"/></a>
+        </p>
+      </li>
+      <li class="w-links-li col-xs-1 col-sm-2 col-md-2 col-lg-1">
+        <p class="w-links-p">
+          <a href="https://twitter.com/wcdripscn" target="_blank" title=""><img class="w-icons" src="icons/twitter.svg" alt="twitter"/></a>
+        </p>
+      </li>
+      <li class="w-links-li col-xs-1 col-sm-2 col-md-2 col-lg-1">
+        <p class="w-links-p">
+          <a href="/blog/articles/about" target="_blank"><img class="w-icons" src="icons/user.svg" alt="user"/></a>
+        </p>
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
   export default {
-    name: "index",
-
-    data() {
-      return {
-        activeIndex: '0',
-        sorts: []
-      }
-    },
-
-    created() {
-      this.initSorts();
-    },
-
-    mounted() {
-      switch(this.$route.path) {
-        case '/articles':
-          this.activeIndex = '0';
-          break;
-        case '/articles/about':
-          this.activeIndex = '-1';
-          break;
-        default:
-          this.activeIndex = '-2';
-          break;
-      }
-    },
-
-    methods: {
-      initSorts() {
-        fly.get('/sorts').then(res => {
-          const response = res.data;
-          this.sorts = response.sorts;
-        }).catch(err => {
-          console.log(err);
-        })
-      },
-      handleSelect(key, keyPath) {
-        console.log(key, keyPath);
-        this.activeIndex = key;
-        if(this.$route.path !== '/articles') {
-          this.$router.push('/articles');
-        }
-      },
-
-      handleAbout() {
-        this.activeIndex = '-1';
-        if(this.$route.path !== '/articles/about') {
-          this.$router.push('/articles/about');
-        }
-      }
-    }
+    name: "index"
   }
 </script>
 
-<style lang="scss" scoped>
-  .index-container {
-    background: white;
-    .index-header {
-      display: flex;
-      justify-content: space-between;
-      .index-title {
-        height: 100%;
-        float: left;
-        font-size: 26px;
-        font-weight: lighter;
-        display: inline-flex;
-        align-items: center;
-        margin: 0 24px 0 12px;
-        color: #333;
-        text-decoration: none;
-
-        img {
-          height: 28px;
-          margin-right: 8px;
-        }
-      }
-
-      @media (max-width: 850px) {
-        .index-title {
-          font-size: 24px;
-          margin: 0 16px 0 6px;
-          img {
-            height: 22px;
-            margin-right: 4px;
-          }
-        }
-      }
-
-      @media (max-width: 700px) {
-        .index-title {
-          margin: 0 8px 0 4px;
-          img {
-            height: 18px;
-          }
-          span {
-            display: none;
-          }
-        }
-      }
-
-      .index-header-menu {
-        flex: 1 1 auto;
-        display: flex;
-        overflow-x: scroll;
-        overflow-y: hidden;
-
-        .index-header-menu-item {
-          font-size: 16px;
-          border-bottom: unset;
-        }
-        @media (max-width: 850px) {
-          .index-header-menu-item {
-            font-size: 16px;
-            padding: 0 5px;
-          }
-        }
-
-        @media (max-width: 700px) {
-          .index-header-menu-item {
-            font-size: 14px;
-            vertical-align: top;
-          }
-        }
-
-        .is-active {
-          border-bottom: 2px solid #409EFF !important;
-        }
-      }
-
-      .index-header-about {
-        font-size: 16px;
-        height: 60px;
-        line-height: 60px;
-        padding: 0 20px;
-        cursor: pointer;
-        margin: 0;
-        border-bottom: solid 1px #e6e6e6;
-        color: #909399;
-        transition: border-color .3s,background-color .3s,color .3s;
-        box-sizing: border-box;
-        white-space: nowrap;
-        outline: unset;
-      }
-
-      @media (max-width: 850px) {
-        .index-header-about {
-          font-size: 16px;
-          padding: 0 5px;
-        }
-      }
-
-      @media (max-width: 700px) {
-        .index-header-about {
-          font-size: 14px;
-          vertical-align: top;
-        }
-      }
-    }
-    .index-main {
-      flex: 1 1 auto;
-      overflow-y: auto;
-
-    }
-
-    .index-footer {
-      text-align: center;
-      line-height: 32px;
-      font-size: 14px;
-    }
+<style scoped>
+  .w-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
   }
 
+  .w-title {
+    font-size: 84px;
+    margin-bottom: 30px;
+  }
+
+  .w-links {
+    padding: unset;
+  }
+
+  .w-links-li > a {
+    padding: 0 2px;
+  }
+
+  .w-icons {
+    width: 32px;
+  }
+
+  .w-links-li {
+    display: inline-block;
+  }
+
+  .w-links-p {
+    height: 54px;
+    width: 54px;
+    margin: 6px;
+    padding: unset;
+    border-radius: 27px;
+    display: inline-flex;
+    text-align: center;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .w-links-p > a {
+    display: inline-block;
+  }
 </style>

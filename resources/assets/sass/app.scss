@@ -33,21 +33,6 @@ a, button {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
-.m-container {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  overflow-y: scroll;
-}
-
-.m-footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  margin: 20px 0;
-  text-align: center;
-}
-
 .login {
   margin: auto;
   max-width: 356px;
@@ -55,63 +40,6 @@ a, button {
   border-radius: 10px;
   text-align: center;
   background-color: white;
-}
-
-.w-header {
-  height: 100%;
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  position: relative;
-}
-
-.w-top-right {
-  position: absolute;
-  right: 10px;
-  top: 18px;
-}
-
-.w-content {
-  text-align: center;
-  width: 100%;
-}
-
-.w-title {
-  font-size: 84px;
-  margin-bottom: 30px;
-}
-
-.w-links {
-  padding: unset;
-}
-
-.w-links-li > a {
-  padding: 0 2px;
-}
-
-.w-icons {
-  width: 32px;
-}
-
-.w-links-li {
-  display: inline-block;
-}
-
-.w-links-p {
-  height: 54px;
-  width: 54px;
-  margin: 6px;
-  padding: unset;
-  border-radius: 27px;
-  display: inline-flex;
-  text-align: center;
-  background-color: white;
-  justify-content: center;
-  align-items: center;
-}
-
-.w-links-p > a {
-  display: inline-block;
 }
 
 .blog-nav {

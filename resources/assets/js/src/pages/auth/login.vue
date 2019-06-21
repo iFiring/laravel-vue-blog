@@ -26,7 +26,7 @@
     },
 
     created() {
-      fly.get(`/api/user_info`).then(res => {
+      fly.get(`/api/admin/user`).then(res => {
         if (res.data.info.name) this.$router.push('/admin/articles');
       }).catch(err => {
         console.log(err);
@@ -35,7 +35,8 @@
 
     methods: {
       submit() {
-        fly.post(`/login`, this.form).then(res => {
+        fly.post(`/api/login`, this.form).then(res => {
+          fly.config.headers.Authorization = `Bearer ${res.data.token}`;
           this.$router.push('/admin/articles');
         }).catch(err => {
           console.log(err);

@@ -26,6 +26,10 @@ fly.config.headers['X-Requested-With'] = 'XMLHttpRequest';
 let token = document.head.querySelector('meta[name="csrf-token"]');
 if (token) {
   fly.config.headers['X-CSRF-TOKEN'] = token.content;
+  fly.config.headers = {
+    'X-CSRF-TOKEN': token.content,
+    Accept: 'application/json',
+  }
 } else {
   console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
@@ -43,6 +47,7 @@ fly.interceptors.response.use(
 
 // 实例化路由
 const router = new Router({
+  mode: 'history',
   routes
 })
 

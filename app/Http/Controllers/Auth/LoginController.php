@@ -28,7 +28,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/blog/#/admin'; // 登录后重定向的地址
+    protected $redirectTo = '/admin/articles'; // 登录后重定向的地址
 
     /**
      * Create a new controller instance.
@@ -54,17 +54,19 @@ class LoginController extends Controller
             'password' => 'required|min:8'
         ]);
         if ($validator->passes()) {
-            if (auth()->attempt(array(
+            if (auth()->attempt([
                 'email' => $request->input('email'),
-                'password' => $request->input('password')),true)) {
-                return response()->json('success');
+                'password' => $request->input('password')],true)) {
+                $user = Auth::user();
+                $token = $user->createToken('iFiring')->accessToken;
+                return response()->json(['msg' => 'success', 'token' => $token]);
             }
             return response()->json(['error'=>[
                 'email' => 'Sorry, Username and password is incorrect.'
             ]]);
         }
 
-        return response()->json(['error'=>$validator->errors()->all()]);
+        return response()->json(['error'=>$validator->errors()->all()], 401);
     }
 
     protected function logout()

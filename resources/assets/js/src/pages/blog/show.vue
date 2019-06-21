@@ -39,7 +39,7 @@
     methods: {
       initData() {
         const { id } = this.$route.params;
-        fly.get(`/articles/${id}`).then(res => {
+        fly.get(`/api/articles/${id}`).then(res => {
           console.log(res);
           const response = res.data;
           this.article = response.article;

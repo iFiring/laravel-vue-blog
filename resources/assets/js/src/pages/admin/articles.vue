@@ -99,7 +99,7 @@
 
     methods: {
       handleSwitch(id) {
-        fly.patch(`/api/articles/${id}`).then(res => {
+        fly.patch(`/api/admin/articles/${id}`).then(res => {
           console.log('切换成功!');
         }).catch(err => {
           // 更新失败则刷新列表
@@ -108,7 +108,7 @@
       },
 
       handlePreview(id) {
-        window.open(`/blog/#/articles/show/${id}`);
+        window.open(`/blog/articles/show/${id}`);
       },
 
       handleEdit(id) {
@@ -121,7 +121,7 @@
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
-          fly.delete(`/api/articles/${id}`).then(res => {
+          fly.delete(`/api/admin/articles/${id}`).then(res => {
             this.$message({
               type: 'success',
               message: `${id}已删除`
@@ -137,7 +137,7 @@
 
       initData() {
         this.loading = true;
-        fly.get(`/api/articles?page=${this.currentPage}&page_size=${this.pageSize}`).then(res => {
+        fly.get(`/api/admin/articles?page=${this.currentPage}&page_size=${this.pageSize}`).then(res => {
           this.tableData = res.data.data.map(item => {
             return {
               id: item.id,

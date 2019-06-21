@@ -8,12 +8,6 @@ use App\Sort;
 
 class BlogController extends Controller
 {
-    //
-    public function index(Request $request)
-    {
-        return view('blog.index');
-    }
-
     public function list(Request $request)
     {
         $sort_id = $request->sort;
