@@ -53,7 +53,7 @@
 
     methods: {
       initSorts() {
-        fly.get('/api/sorts').then(res => {
+        fly.get(`/api/sorts`).then(res => {
           const response = res.data;
           this.sorts = response.sorts;
         }).catch(err => {

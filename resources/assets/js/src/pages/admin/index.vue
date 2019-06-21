@@ -85,7 +85,7 @@
             this.$router.push('/blog/articles/about');
             break;
           case 'logout':
-            fly.get('/api/logout').then(res => {
+            fly.get(`/api/admin/logout`).then(res => {
               delete fly.config.headers.Authorization;
               this.$router.push('/blog');
             }).catch(err => {

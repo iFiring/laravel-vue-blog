@@ -35,7 +35,7 @@
 
     methods: {
       submit() {
-        fly.post(`/api/login`, this.form).then(res => {
+        fly.post(`/api/admin/login`, this.form).then(res => {
           fly.config.headers.Authorization = `Bearer ${res.data.token}`;
           this.$router.push('/admin/articles');
         }).catch(err => {
