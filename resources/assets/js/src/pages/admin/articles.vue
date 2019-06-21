@@ -17,7 +17,7 @@
         <el-table-column
             prop="cover"
             label="封面"
-            width="80">
+            width="100">
           <template slot-scope="scope">
             <el-popover
                 placement="right"
@@ -189,7 +189,8 @@
     }
 
     .table-column-img{
-      width: 100px;
+      width: 100%;
+      height: auto;
     }
   }
 

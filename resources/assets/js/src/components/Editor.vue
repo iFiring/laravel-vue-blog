@@ -32,10 +32,9 @@
     </el-row>
     <el-row>
       <el-form-item>
-        <el-container class="cover-container">
-          <div v-if="article.coverUrl">
-            <img class="cover-image" :src="article.coverUrl"  alt="cover image"/>
-            <span class="cover-image-actions">
+        <el-container class="cover-container" v-if="article.coverUrl">
+          <img class="cover-image" :src="article.coverUrl"  alt="cover image"/>
+          <span class="cover-image-actions">
               <span
                   class="cover-image-actions-preview"
                   @click="handlePictureCardPreview"
@@ -49,19 +48,18 @@
                 <i class="el-icon-edit"></i>
               </span>
             </span>
-          </div>
-          <div v-else class="image-upload" @click="handleCoverInput">
-            <i class="el-icon-plus upload-icon-plus"></i>
-          </div>
         </el-container>
+        <div v-else class="cover-container image-upload" @click="handleCoverInput">
+          <i class="el-icon-plus upload-icon-plus"></i>
+        </div>
         <el-dialog :visible.sync="previewDialog">
           <img width="100%" v-if="article.coverUrl" :src="article.coverUrl" alt="dialog image">
         </el-dialog>
-        <el-dialog :visible.sync="coverInputDialog">
+        <el-dialog :visible.sync="coverInputDialog" :close="cancelCoverInput">
           <el-form-item
               label="地址"
           >
-            <el-input :value="article.coverUrl" @change="onChangeCover" autocomplete="off"/>
+            <el-input v-model="coverUrl" autocomplete="off"/>
           </el-form-item>
           <span slot="footer" class="dialog-footer">
             <el-button type="primary" @click="addCoverUrl">Confirm</el-button>
@@ -76,7 +74,7 @@
             :autosize="{ minRows: 16}"
             placeholder="请输入Markdown"
             :value="article.content_raw"
-            @input="update">
+            @input="updateContent">
         </el-input>
       </el-form-item>
       <el-col class="viewer" :xs="24" :sm="18" :md="14" :lg="12" :xl="10">
@@ -107,7 +105,6 @@
 </template>
 
 <script>
-  import debounce from 'lodash.debounce';
   import marked from 'marked';
   export default {
     name: "edit",
@@ -144,12 +141,17 @@
         this.$router.back();
       },
 
-      update: debounce(function (e) {
+      updateContent: function (e) {
         this.article['content_raw'] = e;
-      }, 300),
+      },
 
       handleCoverInput() {
+        this.coverUrl = this.article.coverUrl;
         this.coverInputDialog = true;
+      },
+
+      cancelCoverInput() {
+        this.coverUrl = '';
       },
 
       onChangeCover(value) {
@@ -196,9 +198,9 @@
 
       handleRequest (id, body) {
         if (id) {
-          return fly.put(`/api/articles/${id}`, body);
+          return fly.put(`/api/admin/articles/${id}`, body);
         } else {
-          return fly.post(`/api/article`, body);
+          return fly.post(`/api/admin/article`, body);
         }
       },
 
@@ -212,16 +214,17 @@
 <style lang="scss">
   #editor {
     .cover-container {
-      height: 90px;
+      height: 120px;
       width: 160px;
       position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
+      overflow: hidden;
 
       .cover-image {
         height: 100%;
-        width: auto;
+        width: 100%;
         position: absolute;
         top: 0;
         bottom: 0;

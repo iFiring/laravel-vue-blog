@@ -19,7 +19,7 @@ Route::get('articles/{id}', 'BlogController@show');
 Route::get('sorts', 'BlogController@sorts');
 
 // Auth
-Route::namespace('Auth')->group(function () {
+Route::namespace('Auth')->prefix('admin')->group(function () {
     Route::post('login', 'LoginController@login');
     Route::get('logout', 'LoginController@logout');
 });
