@@ -64,7 +64,7 @@
       initData() {
         this.loading = true;
         // 获取分类表
-        fly.get(`/api/sorts`).then(res => {
+        fly.get(`/api/admin/sorts`).then(res => {
           this.sorts = res.data.sorts || [];
         }).catch(err => console.log(err)).finally(() => {
           this.loading = false;
@@ -77,7 +77,7 @@
             const name = this.dynamicValidateForm.name;
             const id = this.currentId;
             const type = id ? 'patch' : 'post';
-            const url = id ? `/api/sorts/${id}` : `/api/sorts`;
+            const url = id ? `/api/admin/sorts/${id}` : `/api/admin/sorts`;
             fly.request(
               url,
               {
@@ -114,7 +114,7 @@
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
-          fly.delete(`/api/sorts/${id}`).then(res => {
+          fly.delete(`/api/admin/sorts/${id}`).then(res => {
             this.$message({
               type: 'success',
               message: `${name}已删除！`

@@ -59,7 +59,7 @@
       initData() {
         this.loading = true;
         const sortId = +this.index;
-        fly.get(`/articles?page=${this.currentPage}&page_size=${this.pageSize}${ sortId ? `&sort=${sortId}` : '' }`).then(res => {
+        fly.get(`/api/articles?page=${this.currentPage}&page_size=${this.pageSize}${ sortId ? `&sort=${sortId}` : '' }`).then(res => {
           const response = res.data;
           this.articles = response.articles.data;
           this.total = response.articles['total'];
@@ -75,7 +75,7 @@
       },
 
       handleShow(id) {
-        this.$router.push(`/articles/show/${id}`);
+        this.$router.push(`/blog/articles/show/${id}`);
       },
 
       currentChange(page) {

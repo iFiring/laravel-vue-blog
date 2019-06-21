@@ -34,7 +34,7 @@
 
     created() {
       const id = this.$route.params.index || 1;
-      fly.get(`/api/articles/${id}`).then(res => {
+      fly.get(`/api/admin/articles/${id}`).then(res => {
         const responseArticle = res.data.article;
         this.article = {
           title: responseArticle.title || '',

@@ -9,7 +9,7 @@
           @close="handleClose"
           @select="menuSelect"
       >
-        <a class="admin-title" href="/blog/#/articles">
+        <a class="admin-title" href="/blog/articles">
           <img src="../../resource/flame.svg" alt="flame"/>
           <span>iFiring</span>
         </a>
@@ -82,12 +82,12 @@
       handleCommand(command) {
         switch(command) {
           case 'about':
-            this.$router.push('/articles/about');
+            this.$router.push('/blog/articles/about');
             break;
           case 'logout':
-            fly.get('/logout').then(res => {
-              console.log(res);
-              this.$router.push('/');
+            fly.get('/api/logout').then(res => {
+              delete fly.config.headers.Authorization;
+              this.$router.push('/blog');
             }).catch(err => {
               console.log(err);
             });

@@ -34,7 +34,7 @@
 
     created () {
       // 获取分类表
-      fly.get(`/api/sorts`).then(res => {
+      fly.get(`/api/admin/sorts`).then(res => {
         this.sorts = res.data.sorts || [];
       }).catch(err => console.log(err));
     },

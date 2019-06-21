@@ -1,5 +1,7 @@
 // pages
-import blog from './pages/index';
+import index from './pages/index';
+
+import blog from './pages/blog/index';
 import blogArticles from './pages/blog/articles';
 import show from './pages/blog/show';
 import about from './pages/blog/about';
@@ -13,16 +15,21 @@ import sorts from './pages/admin/sorts';
 
 export default [
   {
-    path: '/articles', component: blog,
+    path: '', component: index,
+  },
+  {
+    path: '/blog',
+    component: blog,
+    redirect: '/blog/articles',
     children: [
       {
-        path: '/articles', component: blogArticles, props: true
+        path: '/blog/articles', component: blogArticles, props: true
       },
       {
-        path: '/articles/show/:id', component: show
+        path: '/blog/articles/show/:id', component: show
       },
       {
-        path: '/articles/about', component: about
+        path: '/blog/articles/about', component: about
       }
     ]
   },
