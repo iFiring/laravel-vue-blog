@@ -1,5 +1,5 @@
 <template>
-  <el-col class="show-container" :xs="24" :sm="18" :md="14" :lg="12" :xl="10">
+  <el-col class="show-container" :xs="24" :sm="18" :md="14" :lg="12" :xl="10" v-loading="loading" >
     <h1 class="title">{{ article.title }}</h1>
     <!--<p class="cover">{{ article.cover }}</p>-->
     <p class="desc">{{ article.description }}</p>
@@ -15,6 +15,7 @@
 
     data() {
       return {
+        loading: true,
         article: {
           title: '',
           cover: '',
@@ -38,11 +39,15 @@
 
     methods: {
       initData() {
+        this.loading = true;
         const { id } = this.$route.params;
         fly.get(`/api/articles/${id}`).then(res => {
-          console.log(res);
           const response = res.data;
           this.article = response.article;
+        }).catch(err => {
+          console.log(err);
+        }).finally(() => {
+          this.loading = false;
         })
       }
     }

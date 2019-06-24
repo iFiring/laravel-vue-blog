@@ -14,11 +14,11 @@
       <div class="index-header-about" @click="handleAbout" :style="activeIndex === '-1' ? 'border-bottom: 2px solid #409EFF' : ''">关于</div>
     </el-header>
     <el-main id="main" class="index-main">
-      <el-row :gutter="16" type="flex" justify="center" style="min-height: 100%">
+      <el-row :gutter="16" type="flex" justify="center" class="index-main-content">
         <router-view :index="activeIndex" />
       </el-row>
+      <el-footer class="index-footer" height="32px">Design & Code By iFiring</el-footer>
     </el-main>
-    <el-footer class="index-footer" height="32px">Design & Code By iFiring</el-footer>
   </el-container>
 </template>
 
@@ -80,9 +80,17 @@
 <style lang="scss" scoped>
   .index-container {
     background: white;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     .index-header {
+      width: 100%;
+      height: 60px;
+      position: fixed;
+      top: 0;
+      z-index: 10;
       display: flex;
       justify-content: space-between;
+      background-color: white;
       .index-title {
         height: 100%;
         float: left;
@@ -126,7 +134,7 @@
       .index-header-menu {
         flex: 1 1 auto;
         display: flex;
-        overflow-x: scroll;
+        overflow-x: auto;
         overflow-y: hidden;
 
         .index-header-menu-item {
@@ -182,15 +190,17 @@
       }
     }
     .index-main {
-      flex: 1 1 auto;
-      overflow-y: auto;
-
-    }
-
-    .index-footer {
-      text-align: center;
-      line-height: 32px;
-      font-size: 14px;
+      min-height: calc( 100% - 108px );
+      margin-top: 60px;
+      &-content {
+        min-height: calc(100% - 48px);
+      }
+      .index-footer {
+        margin-top: 16px;
+        text-align: center;
+        line-height: 32px;
+        font-size: 14px;
+      }
     }
   }
 

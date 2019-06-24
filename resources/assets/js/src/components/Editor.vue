@@ -52,7 +52,7 @@
         <div v-else class="cover-container image-upload" @click="handleCoverInput">
           <i class="el-icon-plus upload-icon-plus"></i>
         </div>
-        <el-dialog :visible.sync="previewDialog">
+        <el-dialog custom-class="cover-preview" :visible.sync="previewDialog">
           <img width="100%" v-if="article.coverUrl" :src="article.coverUrl" alt="dialog image">
         </el-dialog>
         <el-dialog :visible.sync="coverInputDialog" :close="cancelCoverInput">
@@ -214,7 +214,7 @@
 <style lang="scss">
   #editor {
     .cover-container {
-      height: 120px;
+      height: 90px;
       width: 160px;
       position: relative;
       display: flex;
@@ -294,6 +294,10 @@
           border-color: #409EFF;
         }
       }
+    }
+    .cover-preview {
+      width: auto;
+      max-width: 86%;
     }
     .viewer {
       float: unset;
